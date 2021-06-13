@@ -40,3 +40,36 @@ const quizData = [
         correct: 'c'
     }
 ]
+
+const questionEl = document.getElementById('question');
+const a_textEl = document.getElementById('a_text');
+const b_textEl = document.getElementById('b_text');
+const c_textEl = document.getElementById('c_text');
+const d_textEl = document.getElementById('d_text');
+const submitBtn = document.getElementById('submit');
+
+let currentQuiz = 0;
+
+loadQuiz();
+
+function loadQuiz() {
+    const currentQuizData = quizData[currentQuiz];
+
+    questionEl.innerText = currentQuizData.question;
+    a_textEl.innerText = currentQuizData.a;
+    b_textEl.innerText = currentQuizData.b;
+    c_textEl.innerText = currentQuizData.c;
+    d_textEl.innerText = currentQuizData.d;
+}
+
+submitBtn.addEventListener('click', () => {
+    currentQuiz++;
+
+    if (currentQuiz < quizData.length) {
+        loadQuiz();
+    }
+    else {
+        submitBtn.innerText('You finished');
+        alert('You have finished the quiz');
+    }
+});
